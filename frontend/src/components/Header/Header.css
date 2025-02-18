@@ -52,3 +52,26 @@
     border-radius: 50px;
     cursor: pointer;
 }
+
+@media(max-width:1050px) {
+
+    .header-contents {
+        max-width: 55%;
+    }
+}
+
+@media(max-width:750px) {
+
+    .header-contents {
+        max-width: 80%;
+        align-items: center;
+    }
+
+    .header-contents p {
+        max-width: 50%;
+    }
+
+    .header-contents button {
+        padding: 1vw 2vw;
+    }
+}
