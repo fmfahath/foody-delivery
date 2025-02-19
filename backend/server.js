@@ -10,7 +10,7 @@ import foodRouter from './routes/foodRoute.js'
 const app = express()
 const port = 4000
 
-//middleware
+//middleware 
 app.use(express.json())
 app.use(cors())
 
