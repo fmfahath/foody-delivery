@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { Fragment, useContext } from 'react'
 import './Cart.css'
 import { StoreContext } from '../../context/StoreContext'
 
@@ -10,12 +10,12 @@ const Cart = () => {
         <div className='cart'>
             <div className="cart-items">
                 <div className="cart-items-title">
-                    <p>Items</p>
-                    <p>Title</p>
-                    <p>Price</p>
-                    <p>Quantity</p>
-                    <p>Total</p>
-                    <p>Remove</p>
+                    <p >Items</p>
+                    <p >Price</p>
+                    <p >Quantity</p>
+                    <p >Total</p>
+                    <p >Remove</p>
+                    <p >Title</p>
                 </div>
                 <br />
                 <hr />
@@ -23,7 +23,7 @@ const Cart = () => {
                     if (cartItems[item._id] > 0) {
 
                         return (
-                            <>
+                            <Fragment key={index}>
                                 <div className="cart-items-title cart-items-item">
                                     <img src={item.image} alt={item.title} />
                                     <p>{item.name}</p>
@@ -33,7 +33,7 @@ const Cart = () => {
                                     <p className='cross' onClick={() => removecart(item._id)}>X</p>
                                 </div>
                                 <hr />
-                            </>
+                            </Fragment>
                         )
                     }
                 })}
