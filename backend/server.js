@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
 import { connectDB } from './config/db.js'
+import foodRouter from './routes/foodRoute.js'
 
 
 
@@ -16,8 +17,11 @@ app.use(cors())
 //connect Database
 connectDB()
 
+//end-points
+app.use('/api/food', foodRouter)
+
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('Node Runnning..')
 })
 
 
