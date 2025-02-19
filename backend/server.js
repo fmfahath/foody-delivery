@@ -18,6 +18,7 @@ app.use(cors())
 connectDB()
 
 //end-points
+app.use('/api/images', express.static('uploads'))
 app.use('/api/food', foodRouter)
 
 app.get('/', (req, res) => {
