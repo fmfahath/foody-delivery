@@ -5,6 +5,7 @@ import { connectDB } from './config/db.js'
 import foodRouter from './routes/foodRoute.js'
 import userRouter from './routes/userRoute.js'
 import cardRouter from './routes/cartRoute.js'
+import orderRouter from './routes/orderRoute.js'
 
 
 
@@ -24,6 +25,7 @@ app.use('/api/images', express.static('uploads'))
 app.use('/api/food', foodRouter)
 app.use('/api/user', userRouter)
 app.use('/api/cart', cardRouter)
+app.use('/api/order', orderRouter)
 
 app.get('/', (req, res) => {
     res.send('Node Runnning..')
