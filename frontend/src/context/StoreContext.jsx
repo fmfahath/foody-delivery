@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from 'react-toastify'
 
 export const StoreContext = createContext(null);
 
@@ -11,18 +12,34 @@ const StoreContextProvider = ({ children }) => {
     const [food_list, setFoodList] = useState([])
 
     //add cart items
-    const addToCart = (itemId) => {
-        if (!cartItems[itemId]) {
-            setCartItem({ ...cartItems, [itemId]: 1 })
-        }
-        else {
-            setCartItem({ ...cartItems, [itemId]: cartItems[itemId] + 1 })
+    const addToCart = async (itemId) => {
+        try {
+            if (!cartItems[itemId]) {
+                setCartItem({ ...cartItems, [itemId]: 1 })
+            }
+            else {
+                setCartItem({ ...cartItems, [itemId]: cartItems[itemId] + 1 })
+            }
+
+            if (token) {
+                await axios.post(`${backend_url}/api/cart/add`, { itemId }, { headers: { token } })
+            }
+        } catch (error) {
+            toast.error(error.message)
         }
     }
 
     //remove items from cart
-    const removecart = (itemId) => {
-        setCartItem({ ...cartItems, [itemId]: cartItems[itemId] - 1 })
+    const removecart = async (itemId) => {
+        try {
+            setCartItem({ ...cartItems, [itemId]: cartItems[itemId] - 1 })
+
+            if (token) {
+                await axios.post(`${backend_url}/api/cart/remove`, { itemId }, { headers: { token } })
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
     }
 
     //cart total amount
