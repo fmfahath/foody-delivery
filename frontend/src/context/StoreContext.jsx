@@ -71,8 +71,6 @@ const StoreContextProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        console.log("context api");
-
         async function loadData() {
             await fetchFoodList()
 
