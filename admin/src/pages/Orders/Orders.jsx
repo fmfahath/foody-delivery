@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Orders.css'
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -19,10 +19,19 @@ const Orders = () => {
         }
     }
 
+    const statusHandler = async (event, orderId) => {
+        try {
+            const responseData = await axios.post(`${url}/api/order/status`, { orderId, status: event.target.value })
+            if (responseData.data.success) {
+                await fetchOrders()
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
     useEffect(() => {
-        fetchOrders()
-
-
+        fetchOrders();
     }, [])
 
 
@@ -52,10 +61,10 @@ const Orders = () => {
                             </div>
                             <p>{order.items.length}</p>
                             <p>${order.amount}</p>
-                            <select name="status" id="">
-                                <option value="Food Processing">Processing</option>
-                                <option value="Out for Delivery">Out for Delivery</option>
-                                <option value="Delivered">Delived</option>
+                            <select name="status" id="" onChange={(e) => statusHandler(e, order._id)} value={order.status}>
+                                <option value="food Processing">Processing</option>
+                                <option value="out for Delivery">Out for Delivery</option>
+                                <option value="delivered">Delived</option>
                             </select>
                         </div>
                     )
