@@ -57,7 +57,7 @@ export const placeOrder = async (req, res) => {
 
 }
 
-//verify order
+//verify order-----------------------------------------------------
 export const verifyOrder = async (req, res) => {
     const { success, orderId } = req.body;
 
@@ -74,3 +74,14 @@ export const verifyOrder = async (req, res) => {
         res.json({ success: false, message: error.message })
     }
 }
+
+//user's orders----------------------------------------------------------
+export const userOrders = async (req, res) => {
+    try {
+        const orders = await orderModel.find({ userId: req.body.userId })
+        res.json({ success: true, data: orders })
+    } catch (error) {
+        res.json({ success: false, message: error.message })
+    }
+}
+
