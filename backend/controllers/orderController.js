@@ -85,3 +85,13 @@ export const userOrders = async (req, res) => {
     }
 }
 
+//listing orders for admin panael-------------------------------------------
+export const listOrders = async (req, res) => {
+    try {
+        const orders = await orderModel.find({})
+        res.json({ success: true, data: orders })
+    } catch (error) {
+        res.json({ success: false, message: error.message })
+    }
+}
+
