@@ -1,13 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './PlaceOrder.css'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const PlaceOrder = () => {
 
     const delivery_fee = 2;
-
+    const navigate = useNavigate()
     const { getCartTotal, token, food_list, cartItems, backend_url } = useContext(StoreContext)
     const [data, setData] = useState({
         firstName: "fahath",
@@ -62,6 +63,17 @@ const PlaceOrder = () => {
         }
 
     }
+
+    useEffect(() => {
+        if (!token) {
+            navigate('/cart')
+            toast.warning("Login to proceed payment")
+        }
+        else if (getCartTotal() === 0) {
+            navigate('/cart')
+            toast.warning("Select any food items to proceed payment")
+        }
+    }, [token])
 
     return (
         <form className='place-order' onSubmit={placeOrder}>
