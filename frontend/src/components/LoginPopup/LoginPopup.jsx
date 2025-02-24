@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './LoginPopup.css'
 import { assets } from '../../assets/assets.js'
 import { StoreContext } from '../../context/StoreContext'
@@ -62,6 +62,7 @@ const LoginPopup = ({ setShowLogin, showLogin }) => {
         }
 
     }
+
 
 
     return (

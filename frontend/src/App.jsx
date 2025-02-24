@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from './components/Navbar/navbar'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
@@ -13,6 +13,15 @@ import MyOrders from './pages/my orders/MyOrders'
 const App = () => {
 
   const [showLogin, setShowLogin] = useState(false)
+  console.log("app: ", showLogin);
+
+  useEffect(() => {
+    if (showLogin) {
+      document.body.classList.add('disable-scroll');
+    } else {
+      document.body.classList.remove('disable-scroll');
+    }
+  }, [showLogin])
 
   return (
     <>
