@@ -11,15 +11,15 @@ const PlaceOrder = () => {
     const navigate = useNavigate()
     const { getCartTotal, token, food_list, cartItems, backend_url } = useContext(StoreContext)
     const [data, setData] = useState({
-        firstName: "fahath",
-        lastName: "mohamed",
-        email: "test@gmail.com",
-        street: "main",
-        city: "chennai",
-        state: "tamilnadu",
-        zipcode: "4500",
-        country: "india",
-        phone: "045666754",
+        firstName: "",
+        lastName: "",
+        email: "",
+        street: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        country: "",
+        phone: "",
     });
 
     const onChangeHandler = (e) => {
