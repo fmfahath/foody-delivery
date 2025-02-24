@@ -73,6 +73,15 @@ const StoreContextProvider = ({ children }) => {
         }
     }
 
+    //get user data
+    const getUserData = async () => {
+        try {
+            const responseDat = axios.post(`${backend_url}/api/user/get}`, {}, { headers: { token } })
+        } catch (error) {
+
+        }
+    }
+
     useEffect(() => {
         async function loadData() {
             await fetchFoodList()

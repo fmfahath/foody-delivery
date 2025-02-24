@@ -74,11 +74,29 @@ export const registerUser = async (req, res) => {
         //generate token
         const token = createToken(user._id)
 
-        res.json({ success: true, message: " user Created", token })
+        res.json({ success: true, message: " user Created", token, userData: user })
 
     } catch (error) {
         return res.json({ success: false, message: error.message })
     }
+}
+
+//get user data-----------------------------------------------
+export const getUserData = async (req, res) => {
+
+    try {
+        const user = await userModel.findById(req.body.userId)
+
+        if (!user) {
+            return res.json({ success: false, message: "User not found with this ID" })
+        }
+
+        res.json({ success: true, userData: user })
+
+    } catch (error) {
+        return res.json({ success: false, message: error.message })
+    }
+
 }
 
 //create jwt token---------------------------------------------
