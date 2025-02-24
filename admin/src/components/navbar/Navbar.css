@@ -9,6 +9,15 @@
     width: max(10%, 80px);
 }
 
-.navbar .profile {
-    width: 40px;
+.left-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.left-div p {
+    font-weight: 500;
+    color: tomato;
+    cursor: pointer;
 }
