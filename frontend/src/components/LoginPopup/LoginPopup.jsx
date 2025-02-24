@@ -6,15 +6,19 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-const LoginPopup = ({ setShowLogin }) => {
+const LoginPopup = ({ setShowLogin, showLogin }) => {
 
-    const { backend_url, setToken } = useContext(StoreContext)
-    const [currentSate, setCurrentState] = useState('Login')
+    const { backend_url, setToken, currentSate, setCurrentState, setAdminState, setUserData } = useContext(StoreContext)
+    const navigate = useNavigate()
     const [data, setData] = useState({
         name: "",
         email: "",
         password: ""
     })
+
+    const setShowLoginState = () => {
+        setShowLogin(false)
+    }
 
 
     const onChangehandler = (e) => {
@@ -29,20 +33,27 @@ const LoginPopup = ({ setShowLogin }) => {
 
         let newUrl = backend_url;
 
-        if (currentSate === 'Sign Up') {
-            newUrl += '/api/user/register'
+        if (currentSate === 'Login') {
+            newUrl += '/api/user/login'
         }
         else {
-            newUrl += '/api/user/login'
+            newUrl += '/api/user/register'
         }
 
         try {
             const responseData = await axios.post(newUrl, data)
 
             if (responseData.data.success) {
+
+                if (responseData.data.admin) {
+                    setAdminState(true)
+                }
+
                 setToken(responseData.data.token)
+                setUserData(responseData.data.userData)
                 localStorage.setItem('token', responseData.data.token)
                 setShowLogin(false)
+
             } else {
                 toast.error(responseData.data.message)
             }
@@ -54,11 +65,11 @@ const LoginPopup = ({ setShowLogin }) => {
 
 
     return (
-        <div className='login-popup'>
+        <div className='login-popup admin'>
             <form className="login-popup-container" onSubmit={onLogin}>
                 <div className='login-popup-title'>
                     <h2>{currentSate}</h2>
-                    <img src={assets.cross_icon} onClick={() => setShowLogin(false)} alt="" />
+                    <img src={assets.cross_icon} onClick={() => setShowLoginState()} alt="" />
                 </div>
                 <div className="login-popup-inputs">
                     {currentSate === 'Sign Up' && <input type="text" placeholder='Your Name' required name='name' onChange={onChangehandler} value={data.name} />}

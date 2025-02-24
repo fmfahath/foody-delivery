@@ -23,7 +23,12 @@ export const loginUser = async (req, res) => {
 
         const token = createToken(user._id)
 
-        res.json({ success: true, token })
+        if (user.role === 'admin') {
+            res.json({ success: true, token, admin: true, userData: user })
+        } else {
+            res.json({ success: true, token, userData: user })
+        }
+
 
     } catch (error) {
         return res.json({ success: false, message: error.message })
@@ -33,7 +38,7 @@ export const loginUser = async (req, res) => {
 
 //register user-------------------------------------------
 export const registerUser = async (req, res) => {
-    const { name, password, email } = req.body;
+    const { name, password, email, role } = req.body;
 
     try {
 
@@ -60,6 +65,7 @@ export const registerUser = async (req, res) => {
         const newUser = new userModel({
             name,
             email,
+            role,
             password: hashedPass
         })
 

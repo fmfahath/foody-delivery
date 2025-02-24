@@ -67,6 +67,13 @@
     position: relative;
 }
 
+.navbar-profile span {
+    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .nav-profile-dropdown {
     position: absolute;
     display: none;

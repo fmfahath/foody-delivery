@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <>
-      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
+      {showLogin && <LoginPopup setShowLogin={setShowLogin} showLogin={showLogin} />}
       <div className='app'>
         <Navbar setShowLogin={setShowLogin} />
         <ToastContainer />
