@@ -10,6 +10,9 @@ const StoreContextProvider = ({ children }) => {
     const backend_url = 'http://localhost:4000';
     const [token, setToken] = useState("")
     const [food_list, setFoodList] = useState([])
+    const [currentSate, setCurrentState] = useState('Login')
+    const [adminState, setAdminState] = useState(false)
+    const [userData, setUserData] = useState({})
 
     //add cart items
     const addToCart = async (itemId) => {
@@ -70,13 +73,27 @@ const StoreContextProvider = ({ children }) => {
         }
     }
 
+    //get user data
+    const getUserData = async (token) => {
+        try {
+            const responseData = await axios.post(`${backend_url}/api/user/get`, {}, { headers: { token } })
+            if (responseData.data.success) {
+                setUserData(responseData.data.userData)
+            }
+        } catch (error) {
+
+        }
+    }
+
     useEffect(() => {
         async function loadData() {
             await fetchFoodList()
 
             if (localStorage.getItem('token')) {
                 setToken(localStorage.getItem('token'))
+
                 await getCartData(localStorage.getItem('token'))
+                await getUserData(localStorage.getItem('token'))
             }
         }
 
@@ -93,7 +110,13 @@ const StoreContextProvider = ({ children }) => {
         getCartTotal,
         backend_url,
         token,
-        setToken
+        setToken,
+        currentSate,
+        setCurrentState,
+        adminState,
+        setAdminState,
+        userData,
+        setUserData
     }
 
     return (
