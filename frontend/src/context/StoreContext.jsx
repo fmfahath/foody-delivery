@@ -74,9 +74,12 @@ const StoreContextProvider = ({ children }) => {
     }
 
     //get user data
-    const getUserData = async () => {
+    const getUserData = async (token) => {
         try {
-            const responseDat = axios.post(`${backend_url}/api/user/get}`, {}, { headers: { token } })
+            const responseData = await axios.post(`${backend_url}/api/user/get`, {}, { headers: { token } })
+            if (responseData.data.success) {
+                setUserData(responseData.data.userData)
+            }
         } catch (error) {
 
         }
@@ -88,7 +91,9 @@ const StoreContextProvider = ({ children }) => {
 
             if (localStorage.getItem('token')) {
                 setToken(localStorage.getItem('token'))
+
                 await getCartData(localStorage.getItem('token'))
+                await getUserData(localStorage.getItem('token'))
             }
         }
 
