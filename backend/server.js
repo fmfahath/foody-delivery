@@ -15,7 +15,14 @@ const port = process.env.PORT || 4000
 
 //middleware 
 app.use(express.json())
-app.use(cors())
+
+const corsOptions = {
+    origin: ['foody-delivery-frontend.vercel.app', 'foody-delivery-admin.vercel.app'],
+    credentials: true,            //access-control-allow-credentials:true
+    optionSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
 
 //connect Database
 connectDB()
