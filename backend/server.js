@@ -32,7 +32,8 @@ app.use(cors({
         }
     },
     methods: "GET, POST, PUT, DELETE",
-    allowedHeaders: "Content-Type, Authorization"
+    allowedHeaders: ["Content-Type", "Authorization", "token"],
+    credentials: true
 }));
 
 //connect Database
