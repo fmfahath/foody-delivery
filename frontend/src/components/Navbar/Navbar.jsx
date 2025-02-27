@@ -7,9 +7,8 @@ import { StoreContext } from '../../context/StoreContext.jsx'
 const Navbar = ({ setShowLogin }) => {
 
     const [menu, setMenu] = useState('home')
-    const { getCartTotal, token, setToken, adminState, setAdminState, userData } = useContext(StoreContext)
+    const { getCartTotal, token, setToken, adminState, setAdminState, userData, admin_url } = useContext(StoreContext)
     const navigate = useNavigate()
-    const admin_url = 'http://localhost:5174';
 
     const adminHandler = () => {
         window.location.replace(admin_url);
