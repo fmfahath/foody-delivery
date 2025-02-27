@@ -7,7 +7,8 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = ({ children }) => {
 
     const [cartItems, setCartItem] = useState({})
-    const backend_url = 'https://foody-delivery-backend.vercel.app';
+    const backend_url = import.meta.env.VITE_BACKEND_URL;
+    const admin_url = import.meta.env.VITE_ADMIN_URL;
     const [token, setToken] = useState("")
     const [food_list, setFoodList] = useState([])
     const [currentSate, setCurrentState] = useState('Login')
@@ -109,6 +110,7 @@ const StoreContextProvider = ({ children }) => {
         removecart,
         getCartTotal,
         backend_url,
+        admin_url,
         token,
         setToken,
         currentSate,

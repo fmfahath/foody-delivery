@@ -13,7 +13,6 @@ import MyOrders from './pages/my orders/MyOrders'
 const App = () => {
 
   const [showLogin, setShowLogin] = useState(false)
-  console.log("app: ", showLogin);
 
   useEffect(() => {
     if (showLogin) {
