@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
-    const frontend_url = 'http://localhost:5173';
+    const frontend_url = import.meta.env.VITE_FRONTEND_URL;
 
     const homePageHandler = () => {
         window.location.replace(frontend_url);
