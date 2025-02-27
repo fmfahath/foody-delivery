@@ -15,7 +15,25 @@ const port = process.env.PORT || 4000
 
 //middleware 
 app.use(express.json())
-app.use(cors());
+
+//cors 
+// Allowed frontend domains
+const allowedOrigins = [
+    "https://foody-delivery-admin.vercel.app",
+    "https://foody-delivery-frontend.vercel.app"
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    methods: "GET, POST, PUT, DELETE",
+    allowedHeaders: "Content-Type, Authorization"
+}));
 
 //connect Database
 connectDB()
