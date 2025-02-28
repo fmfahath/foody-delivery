@@ -1,12 +1,18 @@
 import express from "express";
 import multer from "multer";
+import fs from 'fs'
 import { addFood, listFood, removeFood } from "../controllers/foodController.js";
 
 
 const foodRouter = express.Router();
 
+const uploadDir = '/tmp/uploads';
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
 const stoage = multer.diskStorage({
-    destination: "uploads",
+    destination: uploadDir,
     filename: (req, file, cb) => {
         return cb(null, file.originalname)
     }
