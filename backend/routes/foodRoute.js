@@ -6,7 +6,7 @@ import { addFood, listFood, removeFood } from "../controllers/foodController.js"
 const foodRouter = express.Router();
 
 const stoage = multer.diskStorage({
-    destination: "/tmp/uploads",
+    destination: "uploads",
     filename: (req, file, cb) => {
         return cb(null, file.originalname)
     }
