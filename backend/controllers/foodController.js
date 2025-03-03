@@ -3,15 +3,15 @@ import fs from 'fs';
 
 
 //add new food-----------------------------------------------------------
-export const addFood = async (req, res, imageUrl) => {
-    console.log('addFood Controller running..: ', imageUrl);
+export const addFood = async (req, res) => {
+    console.log('addFood Controller running..: ', req.body.imageUrl);
 
     const food = new foodModel({
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
         category: req.body.category,
-        image: imageUrl
+        image: req.body.imageUrl
     })
 
     try {

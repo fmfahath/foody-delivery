@@ -46,7 +46,8 @@ foodRouter.post("/add", upload.single("image"), async (req, res) => {
         console.log('addFood Route running..: ', imageUrl);
 
         // Store imageUrl in your database if needed
-        await addFood(req, res, imageUrl); // Modify your controller to accept imageUrl
+        req.body.imageUrl = imageUrl
+        await addFood(req, res); // Modify your controller to accept imageUrl
 
         res.json({ message: "File uploaded successfully", imageUrl });
     } catch (error) {
@@ -57,7 +58,6 @@ foodRouter.post("/add", upload.single("image"), async (req, res) => {
 
 
 
-foodRouter.post('/add', upload.single('image'), addFood)
 foodRouter.get('/list', listFood)
 foodRouter.post('/remove', removeFood)
 
