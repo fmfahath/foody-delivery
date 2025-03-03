@@ -3,13 +3,13 @@ import fs from 'fs';
 
 
 //add new food-----------------------------------------------------------
-export const addFood = async (req, res) => {
+export const addFood = async (req, res, imageUrl) => {
     const food = new foodModel({
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
         category: req.body.category,
-        image: req.file.filename
+        image: imageUrl
     })
 
     try {
