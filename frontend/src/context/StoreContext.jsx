@@ -9,13 +9,14 @@ const StoreContextProvider = ({ children }) => {
     const [cartItems, setCartItem] = useState({})
     const backend_url = import.meta.env.VITE_BACKEND_URL;
     const admin_url = import.meta.env.VITE_ADMIN_URL;
-    const blob_storage_url = import.meta.env.BLOB_STORAGE_URL
+    const blob_storage_url = import.meta.env.VITE_BLOB_STORAGE_URL
     const [token, setToken] = useState("")
     const [food_list, setFoodList] = useState([])
     const [currentSate, setCurrentState] = useState('Login')
     const [adminState, setAdminState] = useState(false)
     const [userData, setUserData] = useState({})
 
+    console.log(blob_storage_url)
     //add cart items
     const addToCart = async (itemId) => {
         try {

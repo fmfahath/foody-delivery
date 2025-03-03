@@ -23,6 +23,8 @@ const allowedOrigins = [
     "https://foody-delivery-frontend.vercel.app"
 ];
 
+// app.use(cors())
+
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.includes(origin)) {
@@ -35,6 +37,7 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization", "token"],
     credentials: true
 }));
+
 
 //connect Database
 connectDB()
