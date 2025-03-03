@@ -32,7 +32,7 @@ const Navbar = ({ setShowLogin }) => {
                 <a href='#footer' onClick={() => setMenu("contact")} className={menu === 'contact' ? 'active' : ''}>Contact</a>
             </ul>
             <div className="navbar-right">
-                <Link><img src={assets.search_icon} alt="search-icon" /></Link>
+                {/* <Link><img src={assets.search_icon} alt="search-icon" /></Link> */}
                 <div className="navbar-search-icon">
                     <Link to={'/cart'}><img src={assets.basket_icon} alt='basket-icon' /></Link>
                     <div className={getCartTotal() > 0 ? "dot" : ""}></div>
