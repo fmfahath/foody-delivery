@@ -32,7 +32,7 @@
     color: #fff;
 }
 
-.header-contents button {
+.header-contents a {
     border: none;
     color: #747474;
     background-color: #fff;
@@ -44,7 +44,7 @@
     transition: all 0.1s;
 }
 
-.header-contents button:hover {
+.header-contents a:hover {
     border: 2px solid #fff;
     color: #fff;
     background-color: transparent;
