@@ -39,7 +39,8 @@ foodRouter.post("/add", upload.single("image"), async (req, res) => {
         // Upload to Vercel Blob Storage
         const blob = await put(`${folderName}/${req.file.originalname}`, fileStream, {
             access: "public",
-            token: process.env.BLOB_READ_WRITE_TOKEN // Makes the file accessible via URL
+            token: process.env.BLOB_READ_WRITE_TOKEN, // Makes the file accessible via URL
+            addRandomSuffix: false, // Disable random suffix
         });
 
         // File URL stored in blob.url
