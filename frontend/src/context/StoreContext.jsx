@@ -9,6 +9,7 @@ const StoreContextProvider = ({ children }) => {
     const [cartItems, setCartItem] = useState({})
     const backend_url = import.meta.env.VITE_BACKEND_URL;
     const admin_url = import.meta.env.VITE_ADMIN_URL;
+    const blob_storage_url = import.meta.env.BLOB_STORAGE_URL
     const [token, setToken] = useState("")
     const [food_list, setFoodList] = useState([])
     const [currentSate, setCurrentState] = useState('Login')
@@ -111,6 +112,7 @@ const StoreContextProvider = ({ children }) => {
         getCartTotal,
         backend_url,
         admin_url,
+        blob_storage_url,
         token,
         setToken,
         currentSate,

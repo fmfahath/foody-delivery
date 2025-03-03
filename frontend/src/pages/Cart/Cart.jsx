@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
 
-    const { food_list, cartItems, removecart, getCartTotal, backend_url } = useContext(StoreContext)
+    const { food_list, cartItems, removecart, getCartTotal, backend_url, blob_storage_url } = useContext(StoreContext)
     const navigate = useNavigate()
 
     return (
@@ -27,7 +27,7 @@ const Cart = () => {
                         return (
                             <Fragment key={index}>
                                 <div className="cart-items-title cart-items-item">
-                                    <img src={`${backend_url}/api/images/${item.image}`} alt={item.title} />
+                                    <img src={`${blob_storage_url}/${item.image}`} alt={item.title} />
                                     <p>{item.name}</p>
                                     <p>${item.price}</p>
                                     <p>{cartItems[item._id]}</p>
