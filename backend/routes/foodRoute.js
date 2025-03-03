@@ -43,7 +43,11 @@ foodRouter.post("/add", upload.single("image"), async (req, res) => {
         });
 
         // File URL stored in blob.url
+<<<<<<< HEAD
         const imageUrl = blob.url;
+=======
+        // const imageUrl = blob.url;
+>>>>>>> 7cf022bfb12cd163a2b1f45aeedf835ee6ab2f03
 
         await addFood(req, res); // Modify your controller to accept imageUrl
 
