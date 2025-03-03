@@ -4,6 +4,8 @@ import fs from 'fs';
 
 //add new food-----------------------------------------------------------
 export const addFood = async (req, res, imageUrl) => {
+    console.log('addFood Controller running..: ', imageUrl);
+
     const food = new foodModel({
         name: req.body.name,
         description: req.body.description,
