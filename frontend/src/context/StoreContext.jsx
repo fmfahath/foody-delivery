@@ -16,7 +16,6 @@ const StoreContextProvider = ({ children }) => {
     const [adminState, setAdminState] = useState(false)
     const [userData, setUserData] = useState({})
 
-    console.log(blob_storage_url)
     //add cart items
     const addToCart = async (itemId) => {
         try {
