@@ -32,11 +32,12 @@ foodRouter.post("/add", upload.single("image"), async (req, res) => {
         }
 
         // Read file from /tmp
+        const folderName = "foods";
         const filePath = req.file.path;
         const fileStream = fs.createReadStream(filePath);
 
         // Upload to Vercel Blob Storage
-        const blob = await put(req.file.originalname, fileStream, {
+        const blob = await put(`${folderName}/${req.file.originalname}`, fileStream, {
             access: "public",
             token: process.env.BLOB_READ_WRITE_TOKEN // Makes the file accessible via URL
         });
