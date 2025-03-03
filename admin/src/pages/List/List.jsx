@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 const List = () => {
 
     const url = import.meta.env.VITE_BACKEND_URL;
+    const blob_storage_url = import.meta.env.VITE_BLOB_STORAGE_URL;
     const [list, setList] = useState([])
 
     const fetchList = async () => {
@@ -57,7 +58,7 @@ const List = () => {
                 {list.map((item, index) => {
                     return (
                         <div className='list-table-format' key={index}>
-                            <img src={`${url}/api/images/${item.image}`} alt="" />
+                            <img src={`${blob_storage_url}/${item.image}`} alt="" />
                             <p>{item.name}</p>
                             <p>{item.category}</p>
                             <p>${item.price}</p>
