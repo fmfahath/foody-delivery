@@ -122,4 +122,8 @@
     .cart-promocode {
         justify-content: start;
     }
+
+    .cart-total button {
+        margin: 15px auto;
+    }
 }
